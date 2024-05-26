@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "03f5f3c4-c649-4e15-b0a5-0cdbe0ff2e1d",
+		"name": "MealPrep",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6356054"
+	},
+	"item": [
+		{
+			"name": "PrepareMeals",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {       \r\n        \"ingredients\": [\r\n            {               \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"peppers\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {                \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {              \r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\"               \r\n            },\r\n            {               \r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\"                \r\n            },\r\n            {              \r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\"                \r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/prepare-weeks-meals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"prepare-weeks-meals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Shopping list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {       \r\n        \"ingredients\": [\r\n            {               \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"peppers\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {                \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {              \r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\"               \r\n            },\r\n            {               \r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\"                \r\n            },\r\n            {              \r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\"                \r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/get-shopping-list?mealPrepId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get-shopping-list"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "mealPrepId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Meal Prep",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"monDinner\": {\r\n        \"id\": \"12\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"16\",\r\n                \"recipeId\": \"12\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"17\",\r\n                \"recipeId\": \"12\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"23\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"12\"\r\n            },\r\n            {\r\n                \"id\": \"24\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"12\"\r\n            },\r\n            {\r\n                \"id\": \"25\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"12\"\r\n            }\r\n        ]\r\n    },\r\n    \"tuesDinner\": {\r\n        \"id\": \"8\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"8\",\r\n                \"recipeId\": \"8\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"9\",\r\n                \"recipeId\": \"8\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"11\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"8\"\r\n            },\r\n            {\r\n                \"id\": \"12\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"8\"\r\n            },\r\n            {\r\n                \"id\": \"13\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"8\"\r\n            }\r\n        ]\r\n    },\r\n    \"wedDinner\": {\r\n        \"id\": \"7\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"6\",\r\n                \"recipeId\": \"7\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"7\",\r\n                \"recipeId\": \"7\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"8\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"7\"\r\n            },\r\n            {\r\n                \"id\": \"9\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"7\"\r\n            },\r\n            {\r\n                \"id\": \"10\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"7\"\r\n            }\r\n        ]\r\n    },\r\n    \"thursDinner\": {\r\n        \"id\": \"11\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"14\",\r\n                \"recipeId\": \"11\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"15\",\r\n                \"recipeId\": \"11\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"20\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"11\"\r\n            },\r\n            {\r\n                \"id\": \"21\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"11\"\r\n            },\r\n            {\r\n                \"id\": \"22\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"11\"\r\n            }\r\n        ]\r\n    },\r\n    \"friDinner\": {\r\n        \"id\": \"10\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"12\",\r\n                \"recipeId\": \"10\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"13\",\r\n                \"recipeId\": \"10\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"17\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"10\"\r\n            },\r\n            {\r\n                \"id\": \"18\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"10\"\r\n            },\r\n            {\r\n                \"id\": \"19\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"10\"\r\n            }\r\n        ]\r\n    },\r\n    \"satDinner\": {\r\n        \"id\": \"5\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"2\",\r\n                \"recipeId\": \"5\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"3\",\r\n                \"recipeId\": \"5\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"2\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"5\"\r\n            },\r\n            {\r\n                \"id\": \"3\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"5\"\r\n            },\r\n            {\r\n                \"id\": \"4\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"5\"\r\n            }\r\n        ]\r\n    },\r\n    \"sunDinner\": {\r\n        \"id\": \"9\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"10\",\r\n                \"recipeId\": \"9\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"11\",\r\n                \"recipeId\": \"9\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"14\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"9\"\r\n            },\r\n            {\r\n                \"id\": \"15\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"9\"\r\n            },\r\n            {\r\n                \"id\": \"16\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"9\"\r\n            }\r\n        ]\r\n    },\r\n    \"weekBreakfast\": null,\r\n    \"satBreak\": {\r\n        \"id\": \"14\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"20\",\r\n                \"recipeId\": \"14\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"21\",\r\n                \"recipeId\": \"14\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"BREAKFAST\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"29\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"14\"\r\n            },\r\n            {\r\n                \"id\": \"30\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"14\"\r\n            },\r\n            {\r\n                \"id\": \"31\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"14\"\r\n            }\r\n        ]\r\n    },\r\n    \"sunBreak\": {\r\n        \"id\": \"17\",\r\n        \"ingredients\": [\r\n            {\r\n                \"id\": \"26\",\r\n                \"recipeId\": \"17\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"pepper\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {\r\n                \"id\": \"27\",\r\n                \"recipeId\": \"17\",\r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"BREAKFAST\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {\r\n                \"id\": \"38\",\r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\",\r\n                \"recipeId\": \"17\"\r\n            },\r\n            {\r\n                \"id\": \"39\",\r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\",\r\n                \"recipeId\": \"17\"\r\n            },\r\n            {\r\n                \"id\": \"40\",\r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\",\r\n                \"recipeId\": \"17\"\r\n            }\r\n        ]\r\n    },\r\n    \"id\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/update-weeks-meals",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update-weeks-meals"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

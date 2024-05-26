@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "17290736-fdea-42e7-8027-102b564b8747",
+		"name": "Recipes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6356054"
+	},
+	"item": [
+		{
+			"name": "Create Recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {       \r\n        \"ingredients\": [\r\n            {               \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"2\",\r\n                    \"name\": \"peppers\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            },\r\n            {                \r\n                \"quantity\": 1,\r\n                \"metric\": \"TABLE_SPOON\",\r\n                \"foodTypeDTO\": {\r\n                    \"id\": \"3\",\r\n                    \"name\": \"orange\"\r\n                },\r\n                \"ingredientType\": \"SPICE\"\r\n            }\r\n        ],\r\n        \"kcal\": 0,\r\n        \"servingSize\": 1,\r\n        \"notes\": \"a Note\",\r\n        \"name\": \"a Name\",\r\n        \"rating\": 1,\r\n        \"mealType\": \"DINNER\",\r\n        \"inRotation\": \"IN\",\r\n        \"steps\": [\r\n            {              \r\n                \"stepNo\": 1,\r\n                \"details\": \"step 1\"               \r\n            },\r\n            {               \r\n                \"stepNo\": 2,\r\n                \"details\": \"step 2\"                \r\n            },\r\n            {              \r\n                \"stepNo\": 3,\r\n                \"details\": \"step 3\"                \r\n            }\r\n        ]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipe/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipe",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"3\",\r\n    \"name\": \"pepper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/food-type/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"food-type",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Pepper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipe/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipe",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Pepper\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipe/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipe",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
