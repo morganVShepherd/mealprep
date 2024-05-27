@@ -147,5 +147,5 @@ To run just this group use the command 'mvn test -Dgroups=Integration-Test'
    1 whole red pepper etc
  - Add delete functionality to controllers
  - Add versioning and auth to the restful requests
- - Finish Contract tests
- - finish Integration tests
+ - Finish Integration tests
+ - Default weekly breakfast recipe
