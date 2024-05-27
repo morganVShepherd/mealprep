@@ -23,13 +23,9 @@ public class RecipeDTO {
     @Valid
     private List<IngredientDTO> ingredients;
     @Valid
-    private List<StepDTO> Steps;
-    @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
+    private List<StepDTO> steps;
     @Positive(message = "positive")
     private int kcal;
-    @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
     @Positive(message = "positive")
     private int servingSize;
     @NotNull(message = "notNull")
@@ -40,17 +36,11 @@ public class RecipeDTO {
     @NotEmpty(message = "notEmpty")
     @Size(min = 0, max = 255, message = "size")
     private String name;
-    @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
     @Positive(message = "positive")
     private int rating;
     @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
-    @Size(min = 0, max = 255, message = "size")
     private MealType mealType;
     @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
-    @Size(min = 0, max = 255, message = "size")
     private MealRotation mealRotation;
 
     public RecipeDTO(Recipe recipe){

@@ -15,8 +15,6 @@ import za.co.mealprep.utils.IdConverter;
 @NoArgsConstructor
 public class StepDTO {
     private String id;
-    @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
     @Positive(message = "positive")
     private int stepNo;
     @NotNull(message = "notNull")

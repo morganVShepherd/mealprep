@@ -1,6 +1,7 @@
 package za.co.mealprep.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ import za.co.mealprep.service.RecipeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("recipe")
-public class RecipeController {
+@RequestMapping("/recipe")
+public class RecipeController extends RootController{
 
     @Autowired
     private RecipeService recipeService;
@@ -34,7 +35,9 @@ public class RecipeController {
     }
 
     @GetMapping("/by-id")
-    public ResponseEntity<RecipeDTO> checkExists(@RequestParam(name = "id") String recipeId) {
+    public ResponseEntity<RecipeDTO> checkExists(@RequestParam(name = "id")
+                                                     @Size(min = 0, max = 255,
+                                                             message = "size")String recipeId) {
         try {
             return new ResponseEntity<>(recipeService.getById(recipeId), HttpStatus.OK);
         } catch (RestException e) {
@@ -43,7 +46,7 @@ public class RecipeController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<RecipeDTO> create(@RequestBody RecipeDTO recipeDTO) {
+    public ResponseEntity<RecipeDTO> create(@Valid @RequestBody RecipeDTO recipeDTO) {
         try {
             return new ResponseEntity<>(recipeService.create(recipeDTO), HttpStatus.OK);
         } catch (RestException e) {

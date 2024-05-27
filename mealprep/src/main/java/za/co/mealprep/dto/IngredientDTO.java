@@ -19,19 +19,13 @@ import za.co.mealprep.utils.IdConverter;
 public class IngredientDTO {
     private String id;
     private String recipeId;
-    @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
     @Positive(message = "positive")
     private long quantity;
     @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
-    @Size(min = 0, max = 255, message = "size")
     private Metric metric;
     @Valid
     private FoodTypeDTO foodTypeDTO;
     @NotNull(message = "notNull")
-    @NotEmpty(message = "notEmpty")
-    @Size(min = 0, max = 255, message = "size")
     private IngredientType ingredientType;
 
     public IngredientDTO(Ingredient ingredient, FoodTypeDTO foodTypeDTO) {
