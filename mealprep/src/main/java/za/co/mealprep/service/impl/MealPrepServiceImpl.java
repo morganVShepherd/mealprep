@@ -32,20 +32,18 @@ public class MealPrepServiceImpl implements MealPrepService {
     private MealPrepRepository mealPrepRepository;
 
     @Override
-    public MealPrepDTO generateWeeklyMealPrep() throws RestException{
+    public MealPrepDTO generateWeeklyMealPrep() throws RestException {
         try {
             return populateAndSaveWeeksMeals();
-        }
-        catch (RestException re) {
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
 
     @Override
-    public MealPrepDTO updateWeeklyMealPrep(MealPrepDTO mealPrepDTO) throws RestException{
+    public MealPrepDTO updateWeeklyMealPrep(MealPrepDTO mealPrepDTO) throws RestException {
         try {
 
             if (mealPrepDTO.getId() == null) {
@@ -53,7 +51,7 @@ public class MealPrepServiceImpl implements MealPrepService {
             }
 
             Optional<MealPrep> optional = mealPrepRepository.findById(IdConverter.convertId(mealPrepDTO.getId()));
-            if(optional.isEmpty()){
+            if (optional.isEmpty()) {
                 throw new RestException(ErrorConstants.DOES_NOT_EXIST);
             }
             MealPrep mealPrep = optional.get();
@@ -103,17 +101,15 @@ public class MealPrepServiceImpl implements MealPrepService {
                 recipeService.update(mealPrepDTO.getSunBreak());
             }
             return mapFromEntity(mealPrepRepository.save(mealPrep));
-        }
-        catch (RestException re){
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e){
-            throw new RestException(e.getMessage(),ErrorConstants.UNEXPECTED_EXCEPTION);
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
 
     @Override
-    public String generateShoppingList(String mealPrepId) throws RestException{
+    public String generateShoppingList(String mealPrepId) throws RestException {
         try {
 
             MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findById(IdConverter.convertId(mealPrepId)).get());
@@ -146,10 +142,79 @@ public class MealPrepServiceImpl implements MealPrepService {
             }
             shoppingListItemHashMap.remove(IdConverter.convertId(Constants.NO_FOOD_TYPE_ID));
             return PrettyPrint.generateStringShoppingList(shoppingListItemHashMap);
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
-        catch (Exception e){
-            throw new RestException(e.getMessage(),ErrorConstants.UNEXPECTED_EXCEPTION);
+    }
+
+    @Override
+    public String generateWhatsAppList(String mealPrepId) throws RestException {
+        try {
+            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findById(IdConverter.convertId(mealPrepId)).get());
+            StringBuilder whatsappList = new StringBuilder("Meal prep for the week \n");
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getMonDinner().getId()),
+                    mealPrepDTO.getMonDinner().getName(), MealType.DINNER, "Monday"));
+            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
+                    MealType.BREAKFAST, "Monday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getTuesDinner().getId()),
+                    mealPrepDTO.getTuesDinner().getName(), MealType.DINNER, "Tuesday"));
+            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
+                    MealType.BREAKFAST, "Tuesday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWedDinner().getId()),
+                    mealPrepDTO.getWedDinner().getName(), MealType.DINNER, "Wednesday"));
+            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
+                    MealType.BREAKFAST, "Wednesday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getThursDinner().getId()),
+                    mealPrepDTO.getThursDinner().getName(), MealType.DINNER, "Thursday"));
+            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
+                    MealType.BREAKFAST, "Thursday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getFriDinner().getId()),
+                    mealPrepDTO.getFriDinner().getName(), MealType.DINNER, "Monday"));
+            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
+                    MealType.BREAKFAST, "Friday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSatDinner().getId()),
+                    mealPrepDTO.getSatDinner().getName(), MealType.DINNER, "Saturday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSatBreak().getId()),
+                    mealPrepDTO.getSatBreak().getName(), MealType.BREAKFAST, "Saturday"));
+
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSunDinner().getId()),
+                    mealPrepDTO.getSunDinner().getName(), MealType.DINNER, "Sunday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSunBreak().getId()),
+                    mealPrepDTO.getSunBreak().getName(), MealType.BREAKFAST, "Sunday"));
+
+            return whatsappList.toString();
+
+        } catch (RestException re) {
+            throw re;
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
+    }
+
+    private String generateListItem(Long recipeId, String desc, MealType mealType, String day) {
+        String messageLineItem = "";
+        if (mealType == MealType.DINNER) {
+            if (recipeId == Constants.NO_RECIPE_DINNER_ID) {
+                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), "Out");
+            } else {
+                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), desc);
+            }
+        } else {
+            if (recipeId == Constants.NO_RECIPE_BREAKFAST_ID) {
+                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), "Out");
+            } else if (recipeId == Constants.DEFAULT_BREAKFAST_ID) {
+                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), Constants.DEFAULT_BREAKFAST_NAME);
+            } else {
+                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), desc);
+            }
+        }
+        return messageLineItem;
     }
 
     private MealPrepDTO populateAndSaveWeeksMeals() throws RestException {

@@ -36,23 +36,21 @@ public class RecipeServiceImpl implements RecipeService {
         try {
             Recipe recipe = recipeRepository.save(new Recipe(recipeDTO));
             String recipeId = IdConverter.convertId(recipe.getId());
-            for(IngredientDTO ingredientDTO:recipeDTO.getIngredients()){
+            for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
                 ingredientDTO.setRecipeId(recipeId);
                 String entityId = ingredientService.create(ingredientDTO).getId();
                 ingredientDTO.setId(entityId);
             }
-            for(StepDTO stepDTO:recipeDTO.getSteps()){
+            for (StepDTO stepDTO : recipeDTO.getSteps()) {
                 stepDTO.setRecipeId(recipeId);
                 String entityId = stepService.create(stepDTO).getId();
                 stepDTO.setId(entityId);
             }
             recipeDTO.setId(recipeId);
             return recipeDTO;
-        }
-        catch (RestException re){
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
@@ -61,37 +59,34 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public RecipeDTO update(RecipeDTO recipeDTO) throws RestException {
         try {
-            if(recipeDTO.getId()==null){
+            if (recipeDTO.getId() == null) {
                 throw new RestException(ErrorConstants.DOES_NOT_EXIST);
             }
             recipeRepository.save(new Recipe(recipeDTO));
-            for(IngredientDTO ingredientDTO: recipeDTO.getIngredients()){
-                if(ingredientDTO.getRecipeId() == null){
+            for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
+                if (ingredientDTO.getRecipeId() == null) {
                     ingredientDTO.setRecipeId(recipeDTO.getId());
                     ingredientDTO.setId(ingredientService.create(ingredientDTO).getId());
-                }
-                else{
+                } else {
                     ingredientService.update(ingredientDTO);
                 }
             }
 
-            for(StepDTO stepDTO: recipeDTO.getSteps()){
-                if(stepDTO.getRecipeId() == null){
+            for (StepDTO stepDTO : recipeDTO.getSteps()) {
+                if (stepDTO.getRecipeId() == null) {
                     stepDTO.setRecipeId(recipeDTO.getId());
                     stepDTO.setId(stepService.create(stepDTO).getId());
-                }
-                else{
+                } else {
                     stepService.update(stepDTO);
                 }
             }
-            for(IngredientDTO ingredientDTO:recipeDTO.getIngredients()){
+            for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
                 ingredientService.update(ingredientDTO);
             }
-            return  recipeDTO;
-        }catch(RestException re){
+            return recipeDTO;
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
@@ -99,63 +94,67 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public void delete(RecipeDTO recipeDTO) throws RestException {
         try {
-            if(recipeDTO.getId()==null){
+            if (recipeDTO.getId() == null) {
                 throw new RestException(ErrorConstants.DOES_NOT_EXIST);
             }
             ingredientService.deleteByRecipeId(recipeDTO.getId());
             stepService.deleteByRecipeId(recipeDTO.getId());
             recipeRepository.deleteById(IdConverter.convertId(recipeDTO.getId()));
-        }
-        catch (RestException re){
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e) {
-            throw new RestException(e.getMessage(),ErrorConstants.UNEXPECTED_EXCEPTION);
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
+
     @Override
     public List<RecipeDTO> getRandomMealsForPrep(int total, MealType mealType) throws RestException {
-        List<Recipe> recipes = recipeRepository.findAllByInRotationAndMealType(MealRotation.IN,mealType);
-        List<RecipeDTO> dtos = new ArrayList<>();
+        try {
+            List<Recipe> recipes = recipeRepository.findAllByInRotationAndMealType(MealRotation.IN, mealType);
+            List<RecipeDTO> dtos = new ArrayList<>();
 
-        if(recipes.size() < total){
-            //todo flip all into rotation
-            //recipeRepository.changeMealRotation(MealRotation.IN,MealRotation.OUT);
-            //recipes = recipeRepository.findAllByInRotationAndMealType(MealRotation.IN,mealType);
-            if(recipes.size() < total){
-                throw new RestException(ErrorConstants.NEED_DATA);
+            if (recipes.size() < total) {
+                recipeRepository.updateRotation(MealRotation.IN, MealRotation.OUT);
+                recipes = recipeRepository.findAllByInRotationAndMealType(MealRotation.IN, mealType);
+                if (recipes.size() < total) {
+                    throw new RestException(ErrorConstants.NEED_DATA);
+                }
             }
+            Collections.shuffle(recipes);
+            for (int a = 0; a < total; a++) {
+                Recipe recipe = recipes.get(a);
+                String recipeId = IdConverter.convertId(recipe.getId());
+                recipe.setInRotation(MealRotation.OUT);
+                dtos.add(new RecipeDTO(recipe, stepService.getAllForRecipe(recipeId), ingredientService.getAllForRecipe(recipeId)));
+                recipeRepository.save(recipe);
+            }
+            return dtos;
+        } catch (RestException re) {
+            throw re;
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
-        Collections.shuffle(recipes);
-        for(int a = 0; a<total; a++){
-            String recipeId = IdConverter.convertId(recipes.get(a).getId());
-            dtos.add(new RecipeDTO(recipes.get(a),stepService.getAllForRecipe(recipeId),ingredientService.getAllForRecipe(recipeId)));
-        }
-        //todo take selected out of rotation
-        return dtos;
     }
 
     @Override
-    public List<RecipeDTO> getAll() throws RestException{
+    public List<RecipeDTO> getAll() throws RestException {
         List<Recipe> recipes = recipeRepository.findAll();
         return mapList(recipes);
     }
 
     @Override
-    public RecipeDTO getById(String recipeId) throws RestException{
+    public RecipeDTO getById(String recipeId) throws RestException {
         try {
-            Optional<Recipe> optional= recipeRepository.findById(IdConverter.convertId(recipeId));
-            if(optional.isEmpty()){
+            Optional<Recipe> optional = recipeRepository.findById(IdConverter.convertId(recipeId));
+            if (optional.isEmpty()) {
                 throw new RestException(ErrorConstants.DOES_NOT_EXIST);
             }
             Recipe recipe = optional.get();
-            return new RecipeDTO(recipe,stepService.getAllForRecipe(recipeId),ingredientService.getAllForRecipe(recipeId));
+            return new RecipeDTO(recipe, stepService.getAllForRecipe(recipeId), ingredientService.getAllForRecipe(recipeId));
 
-        }
-        catch (RestException re){
+        } catch (RestException re) {
             throw re;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
 

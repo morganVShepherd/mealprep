@@ -16,7 +16,7 @@ import za.co.mealprep.pojo.MealRotation;
 import za.co.mealprep.pojo.MealType;
 import za.co.mealprep.utils.IdConverter;
 
-@Entity(name = "recipe")
+@Entity(name = "Recipe")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

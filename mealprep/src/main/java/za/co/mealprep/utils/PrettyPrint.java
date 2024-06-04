@@ -10,7 +10,7 @@ public class PrettyPrint {
     public static String generateStringShoppingList(HashMap<String, ShoppingListItem> shoppingListItemHashMap) {
         StringBuilder printedList = new StringBuilder(Constants.SHOPPING_LIST_TITLE);
         shoppingListItemHashMap.forEach((key, value) -> {
-            printedList.append(String.format(Constants.SHOPPING_LIST_TEMPLATE,value.getQuantity(), value.getMetric().toString(), value.getFoodName()));
+            printedList.append(String.format(Constants.LIST_TEMPLATE,value.getQuantity(), value.getMetric().toString(), value.getFoodName()));
         });
 
         return printedList.toString();

@@ -385,7 +385,7 @@ public class MealPrepServiceTest {
         //generic ingredients with generic quantity for each of the 9 meals
         String totalQuantity = "" + (TestConstants.GENERIC_QUANTITY * TestConstants.GENERIC_QUANTITY * 9);
         String metric = mealPrepDTO.getMonDinner().getIngredients().get(0).getMetric().toString();
-        String totalIngredents = String.format(Constants.SHOPPING_LIST_TEMPLATE, totalQuantity, metric, TestConstants.GENERIC_NAME);
+        String totalIngredents = String.format(Constants.LIST_TEMPLATE, totalQuantity, metric, TestConstants.GENERIC_NAME);
         assertTrue(shoppinglist.contains(totalIngredents));
         assertTrue(shoppinglist.contains(Constants.SHOPPING_LIST_TITLE));
     }
@@ -428,10 +428,10 @@ public class MealPrepServiceTest {
         assertNotNull(shoppinglist);
         String totalQuantity = "" + (TestConstants.GENERIC_QUANTITY * TestConstants.GENERIC_QUANTITY * 9);
         String metric = mealPrepDTO.getMonDinner().getIngredients().get(0).getMetric().toString();
-        String totalIngredents = String.format(Constants.SHOPPING_LIST_TEMPLATE, totalQuantity, metric, TestConstants.GENERIC_NAME);
+        String totalIngredents = String.format(Constants.LIST_TEMPLATE, totalQuantity, metric, TestConstants.GENERIC_NAME);
 
         String totalOtherQuantity = "" + (TestConstants.GENERIC_QUANTITY * TestConstants.GENERIC_QUANTITY * 9) / 2;
-        String totalOtherIngredents = String.format(Constants.SHOPPING_LIST_TEMPLATE, totalOtherQuantity, metric, otherFood);
+        String totalOtherIngredents = String.format(Constants.LIST_TEMPLATE, totalOtherQuantity, metric, otherFood);
 
         assertTrue(shoppinglist.contains(totalIngredents));
         assertTrue(shoppinglist.contains(totalOtherIngredents));
