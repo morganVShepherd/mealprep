@@ -139,8 +139,6 @@ much as possible but would be used more on the staging environment as validation
 To run just this group use the command 'mvn test -Dgroups=Integration-Test'
 
 ## 5. TODOs
- - When meals are confirmed on a list their Rotation is switched to out.
- - When there are not enough meals to generate the list update the existing rotations of out to in before throwing error
  - Update the shopping list so that it comes back in a format that can be imported by MS to do list
  - Keep Readme up to date
  - Use ingredient type in Ingredient for metric checkers on shopping list to make sure we don't get 10g red pepper, 
