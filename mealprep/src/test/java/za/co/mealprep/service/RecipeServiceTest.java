@@ -27,8 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -68,70 +66,6 @@ public class RecipeServiceTest {
     }
 
     @Test
-    void update_pass() throws RestException {
-        RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
-        Recipe entity = new Recipe(recipeDTO);
-        when(recipeRepository.save(any())).thenReturn(entity);
-
-        RecipeDTO created = recipeService.update(recipeDTO);
-
-        assertNotNull(created);
-        assertNotNull(created.getIngredients());
-        assertNotNull(created.getSteps());
-        assertEquals(TestConstants.VALID_S_ID, created.getId());
-        assertEquals(TestConstants.GENERIC_QUANTITY, created.getKcal());
-        assertEquals(TestConstants.GENERIC_QUANTITY, created.getServingSize());
-        assertEquals(TestConstants.GENERIC_QUANTITY, created.getRating());
-        assertEquals(TestConstants.GENERIC_DETAILS, created.getNotes());
-        assertEquals(TestConstants.GENERIC_NAME, created.getName());
-
-        verify(recipeRepository, atLeast(1)).save(any());
-    }
-
-    @Test
-    void updateDoesNotExist_fail() {
-        RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
-        recipeDTO.setId(null);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> recipeService.update(recipeDTO),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.DOES_NOT_EXIST, thrown.getError());
-        verify(recipeRepository, never()).save(any());
-    }
-
-    @Test
-    void delete_pass() throws RestException {
-        RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
-        doNothing().when(recipeRepository).deleteById(any());
-        doNothing().when(ingredientService).deleteByRecipeId(any());
-
-        recipeService.delete(recipeDTO);
-
-        verify(recipeRepository, atLeast(1)).deleteById(TestConstants.VALID_L_ID);
-        verify(ingredientService, atLeast(1)).deleteByRecipeId(TestConstants.VALID_S_ID);
-    }
-
-    @Test
-    void deleteDoesNotExist_fail() throws Exception{
-        RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
-        recipeDTO.setId(null);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> recipeService.delete(recipeDTO),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.DOES_NOT_EXIST, thrown.getError());
-        verify(recipeRepository, never()).deleteById(TestConstants.VALID_L_ID);
-        verify(ingredientService, never()).deleteByRecipeId(TestConstants.VALID_S_ID);
-    }
-
-    @Test
     void getRandomMealsForPrep_pass() throws RestException{
         List<Recipe> recipes = new ArrayList<>();
         RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
@@ -149,7 +83,7 @@ public class RecipeServiceTest {
     }
 
     @Test
-    void getRandomMealsForNotEnough_fail() throws RestException{
+    void getRandomMealsForNotEnough_fail()  {
         List<Recipe> recipes = new ArrayList<>();
         RecipeDTO recipeDTO = TestConstants.generateRecipeDTO();
         for (int a = 0; a< TestConstants.GENERIC_QUANTITY-1; a++){
@@ -184,9 +118,9 @@ public class RecipeServiceTest {
         assertNotNull(recipeDTOS);
         assertEquals(TestConstants.GENERIC_QUANTITY, recipeDTOS.size());
         //the chances of the first being shuffle dot teh same order is super low
-        if(IdConverter.convertId(recipeDTOS.get(0).getId())==0l
-            && IdConverter.convertId(recipeDTOS.get(1).getId())==1l
-                && IdConverter.convertId(recipeDTOS.get(2).getId())==2l ){
+        if(IdConverter.convertId(recipeDTOS.get(0).getId())==0L
+            && IdConverter.convertId(recipeDTOS.get(1).getId())==1L
+                && IdConverter.convertId(recipeDTOS.get(2).getId())==2L ){
             fail();
         }
     }

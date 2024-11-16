@@ -2,12 +2,14 @@ package za.co.mealprep.controller;
 
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import za.co.mealprep.exception.ErrorConstants;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin
 public class RootController {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

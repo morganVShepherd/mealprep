@@ -39,55 +39,6 @@ public class StepServiceImpl implements StepService {
     }
 
     @Override
-    public StepDTO update(StepDTO stepDTO) throws RestException {
-        try {
-            if (stepDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            if (stepDTO.getRecipeId() == null) {
-                throw new RestException(ErrorConstants.NEEDS_PARENT);
-            }
-            Step step = stepRepository.save(new Step(stepDTO));
-            return new StepDTO(step);
-
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void delete(StepDTO stepDTO) throws RestException {
-        try {
-            if (stepDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            stepRepository.deleteById(IdConverter.convertId(stepDTO.getId()));
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void deleteByRecipeId(String recipeId) throws RestException{
-        try {
-            if ( recipeId== null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            stepRepository.deleteAllByRecipeId(IdConverter.convertId(recipeId));
-        }
-        catch (RestException re){
-            throw re;
-        }
-        catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
     public List<StepDTO> getAllForRecipe(String recipeId) throws RestException {
         try {
             List<Step> steps = stepRepository.findAllByRecipeIdOrderByStepNoAsc(IdConverter.convertId(recipeId));

@@ -6,8 +6,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -41,12 +41,11 @@ public class FoodTypeServiceTest {
     private FoodTypeServiceImpl foodTypeService;
 
     @Test
-    void create_pass() throws RestException {
+    void create_pass() {
         FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
         dto.setName(TestConstants.GENERIC_NAME);
         FoodType entity = new FoodType(dto);
         entity.setId(TestConstants.VALID_L_ID);
-        when(foodTypeRepository.findByName(any())).thenReturn(null);
         when(foodTypeRepository.save(any())).thenReturn(entity);
 
         FoodTypeDTO created = foodTypeService.create(dto);
@@ -55,99 +54,6 @@ public class FoodTypeServiceTest {
         assertEquals(TestConstants.VALID_S_ID, created.getId());
         assertEquals(TestConstants.GENERIC_NAME, created.getName());
         verify(foodTypeRepository, atLeast(1)).save(any());
-    }
-
-    @Test
-    void createExists_fail() {
-        FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
-        List<FoodType> list = new ArrayList<>();
-        list.add(new FoodType(dto));
-        when(foodTypeRepository.findByName(any())).thenReturn(list);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> foodTypeService.create(dto),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.ALREADY_EXISTS, thrown.getError());
-        verify(foodTypeRepository, never()).save(any());
-    }
-
-    @Test
-    void update_pass() throws RestException {
-        FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
-        dto.setName(TestConstants.GENERIC_NAME);
-        dto.setId(TestConstants.VALID_S_ID);
-        FoodType entity = new FoodType(dto);
-        when(foodTypeRepository.save(any())).thenReturn(entity);
-
-        FoodTypeDTO created = foodTypeService.update(dto);
-
-        assertNotNull(created);
-        assertEquals(TestConstants.VALID_S_ID, created.getId());
-        assertEquals(TestConstants.GENERIC_NAME, created.getName());
-        verify(foodTypeRepository, atLeast(1)).save(any());
-    }
-
-    @Test
-    void updateDoesNotExist_fail() {
-        FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
-        dto.setName(TestConstants.GENERIC_NAME);
-        dto.setId(null);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> foodTypeService.update(dto),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.DOES_NOT_EXIST, thrown.getError());
-        verify(foodTypeRepository, never()).save(any());
-    }
-
-    @Test
-    void updateDuplicate_fail() {
-        FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
-        List<FoodType> list = new ArrayList<>();
-        list.add(new FoodType(dto));
-        when(foodTypeRepository.findByName(any())).thenReturn(list);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> foodTypeService.update(dto),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.DOES_EXIST, thrown.getError());
-        verify(foodTypeRepository, never()).save(any());
-    }
-
-    @Test
-    void delete_pass() throws RestException {
-        FoodTypeDTO dto = new FoodTypeDTO();
-        dto.setId(TestConstants.VALID_S_ID);
-        doNothing().when(foodTypeRepository).deleteById(any());
-
-        foodTypeService.delete(dto);
-
-        verify(foodTypeRepository, atLeast(1)).deleteById(TestConstants.VALID_L_ID);
-    }
-
-    @Test
-    void deleteDoesNotExist_fail() {
-        FoodTypeDTO dto = TestConstants.generateFoodTypeDTO();
-        dto.setName(TestConstants.GENERIC_NAME);
-        dto.setId(null);
-
-        RestException thrown = assertThrows(
-                RestException.class,
-                () -> foodTypeService.delete(dto),
-                "Expecting exception"
-        );
-
-        assertEquals(ErrorConstants.DOES_NOT_EXIST, thrown.getError());
-        verify(foodTypeRepository, never()).save(any());
     }
 
     @Test
@@ -177,7 +83,7 @@ public class FoodTypeServiceTest {
 
         List<FoodTypeDTO> foundDtos = foodTypeService.checkForExisting(TestConstants.GENERIC_NAME);
 
-        assertEquals(null, foundDtos);
+        assertNull(foundDtos);
         verify(foodTypeRepository, atLeast(1)).findByNameContaining(TestConstants.GENERIC_NAME);
     }
 
@@ -190,45 +96,6 @@ public class FoodTypeServiceTest {
 
         assertEquals(0, foundDtos.size());
         verify(foodTypeRepository, atLeast(1)).findByNameContaining(TestConstants.GENERIC_NAME);
-    }
-
-    @Test
-    void findAll_pass() throws RestException {
-        List<FoodTypeDTO> dtos = new ArrayList<>();
-        List<FoodType> entites = new ArrayList<>();
-        for (long a = 0; a < TestConstants.GENERIC_QUANTITY; a++) {
-            FoodTypeDTO dto = new FoodTypeDTO(IdConverter.convertId(Long.valueOf(a)), "" + a);
-            dtos.add(dto);
-            entites.add(new FoodType(dto));
-        }
-        when(foodTypeRepository.findAll()).thenReturn(entites);
-
-        List<FoodTypeDTO> foundDtos = foodTypeService.getAll();
-
-        assertEquals(TestConstants.GENERIC_QUANTITY, foundDtos.size());
-        for (int a = 0; a < TestConstants.GENERIC_QUANTITY; a++) {
-            assertEquals(dtos.get(a).getId(), foundDtos.get(a).getId(), "Iteration " + a + "Is incorrect");
-            assertEquals(dtos.get(a).getName(), foundDtos.get(a).getName(), "Iteration " + a + "Is incorrect");
-        }
-    }
-
-    @Test
-    void findAllEmpty_pass() throws RestException {
-        List<FoodType> entites = new ArrayList<>();
-        when(foodTypeRepository.findAll()).thenReturn(entites);
-
-        List<FoodTypeDTO> foundDtos = foodTypeService.getAll();
-
-        assertEquals(0, foundDtos.size());
-    }
-
-    @Test
-    void findAllNull_pass() throws RestException {
-        when(foodTypeRepository.findAll()).thenReturn(null);
-
-        List<FoodTypeDTO> foundDtos = foodTypeService.getAll();
-
-        assertEquals(null, foundDtos);
     }
 
     @Test

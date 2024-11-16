@@ -1,25 +1,18 @@
 package za.co.mealprep.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum DayOfWeekRef {
-    DAY1(0),
-    DAY2(1),
-    DAY3(2),
-    DAY4(3),
-    DAY5(4),
-    DAY6(5),
-    DAY7(6);
+    DAY1(0,"Monday"),
+    DAY2(1,"Tuesday"),
+    DAY3(2,"Wednesday"),
+    DAY4(3,"Thursday"),
+    DAY5(4,"Friday"),
+    DAY6(5,"Saturday"),
+    DAY7(6,"Sunday"),;
     int value;
-    DayOfWeekRef(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
-
-
+    String dayOfWeekName;
 }

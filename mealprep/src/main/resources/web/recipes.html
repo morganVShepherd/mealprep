@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Week Plan</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap-download.css">
+    <link rel="stylesheet" href="css/bootstrap-download.min.css">
+    <script src="js/recipeScriptsPagebuilds.js"></script>
+    <script src="js/jquery-3.5.1-download.slim.min.js"></script>
+    <script src="js/bootstrap-download.bundle.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+
+    <script>
+        window.onload = getAllRecipes;
+    </script>
+
+    <div class="list-group">
+        <a href="home.html" class="btn btn-primary btn-lg btn-block active m-2" role="button"
+           aria-pressed="true">Home</a>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="week-data-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Kcal</th>
+                        <th>Serving Size</th>
+                        <th>Meal Type</th>
+                        <th>Notes</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="list-group">
+                <button type="button" data-toggle="modal" data-target="#createRecipeModal"  class="btn btn-primary btn-lg btn-block" >Add Recipe</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- recipe Modal -->
+    <div class="modal fade" id="recipeModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-fullscreen modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <h3 id = "modalHeader"> placeHolder </h3>
+                    </h5>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table align-items-center mb-0" id="modalTable">
+                        <tbody>
+                        <!-- Data will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+
+
+                    <h6 id="modal_body"></h6>
+                    <button type="button"
+                            class="btn btn-success btn-sm"
+                            data-toggle="modal"
+                            data-target="#recipeModal"
+                            id="done">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Recipe Modal -->
+    <div class="modal fade" id="createRecipeModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Create Recipe</h1>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                   <table >
+                       <tr>
+                           <td>
+                               Name:
+                           </td>
+                           <td>
+                                <input type="text" maxlength="250" id ="name" value =""/>
+                           </td>
+                           <td>
+                               Serving Size:
+                           </td>
+                           <td>
+                               <input type="number" max="99" id ="servingSize" value =""/>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td>
+                               Rating(0-10):
+                           </td>
+                           <td>
+                                <input type="number" max="10" id ="rating" value =""/>
+                           </td>
+                           <td>
+                               Kcal:
+                           </td>
+                           <td>
+                               <input type="number" max="99999" id ="kcal" value =""/>
+                           </td>
+                       </tr>
+                   </table>
+
+                    <h3>Ingredients</h3>
+                    <table id = "ingredientsTable">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Quantity</th>
+                            <th>Metric</th>
+                            <th>Food</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                              1
+                            </td>
+                            <td>
+                                <input type="number" max="9999" id="ingQty" type="text" value =""/>
+                            </td>
+                            <td>
+                                <select name="metric" id="ingMetric">
+                                    <option value="BLANK">  </option>
+                                    <option value="TABLE_SPOON">Tablespoon</option>
+                                    <option value="TEA_SPOON">Tea spoon</option>
+                                    <option value="CUP">Cup</option>
+                                    <option value="GRAM">g</option>
+                                    <option value="KILOGRAM">Kg</option>
+                                    <option value="MILLILITER">ml</option>
+                                    <option value="LITER">l</option>
+                                    <option value="SMALL">Small</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="LARGE">Large</option>
+                                    <option value="PINCH">Pinch</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input id="ingFood" maxlength="200" type="text"  value =""/>
+                            </td>
+                            <td>
+                                <input class="btn-table" type="button" id="addIngredient" value="Add" onclick="insIngredientRow()" />
+                            </td>
+                            <td>
+                                <input class="btn-table" type="button" id="delIngredient" value="Delete" onclick="deleteIngredientRow(this)" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h3>Steps</h3>
+                    <table id = "stepsTable">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Step Details</th>
+                        </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                <textarea maxlength="1499" name="text" id = "stpTa" rows="2" cols="75" wrap="soft"> </textarea>
+                            </td>
+                            <td>
+                                <div>
+                                    <input  class="btn-table" type="button" id="delStep" value="Delete" onclick="deleteStepRow(this)" />
+                                </div>
+                                <div>
+                                    <input  class="btn-table" type="button" id="addStep" value="Add" onclick="insStepRow()" />
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <button  type="button" data-toggle="modal" onclick="recipeToJson()" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

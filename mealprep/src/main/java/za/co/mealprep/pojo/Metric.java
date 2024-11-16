@@ -8,7 +8,7 @@ public enum Metric {
     BLANK("  "),
     GRAM("g"),
     KILOGRAM("Kg"),
-    MILILITER("ml"),
+    MILLILITER("ml"),
     LITER("l"),
     SMALL("Small"),
     MEDIUM("Medium"),
@@ -19,7 +19,16 @@ public enum Metric {
         this.label = label;
     }
 
-    private String getLabel(){
-        return this.label;
+    public String getLabel() {
+        return label;
+    }
+
+    public static Metric fromLabel(String label) {
+        for (Metric b : Metric.values()) {
+            if (b.label.equalsIgnoreCase(label)) {
+                return b;
+            }
+        }
+        return null;
     }
 }

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import za.co.mealprep.dto.MealPrepDTO;
+import za.co.mealprep.pojo.DayOfWeekRef;
 import za.co.mealprep.utils.IdConverter;
 
 @Entity(name = "meal_prep")
@@ -35,30 +36,22 @@ public class MealPrep {
     private Long satDinnerId;
     @Column
     private Long sunDinnerId;
-    @Column
-    private Long satBreakId;
-    @Column
-    private Long sunBreakId;
 
-    public MealPrep (MealPrepDTO mealPrepDTO) {
+    public MealPrep(MealPrepDTO mealPrepDTO) {
         this.id = IdConverter.convertId(mealPrepDTO.getId());
-        if(mealPrepDTO.getMonDinner()!=null)
-        this.monDinnerId = IdConverter.convertId(mealPrepDTO.getMonDinner().getId());
-        if(mealPrepDTO.getTuesDinner()!=null)
-        this.tuesDinnerId = IdConverter.convertId(mealPrepDTO.getTuesDinner().getId());
-        if(mealPrepDTO.getWedDinner()!=null)
-        this.wedDinnerId = IdConverter.convertId(mealPrepDTO.getWedDinner().getId());
-        if(mealPrepDTO.getThursDinner()!=null)
-        this.thursDinnerId = IdConverter.convertId(mealPrepDTO.getThursDinner().getId());
-        if(mealPrepDTO.getFriDinner()!=null)
-        this.friDinnerId = IdConverter.convertId(mealPrepDTO.getFriDinner().getId());
-        if(mealPrepDTO.getSatDinner()!=null)
-        this.satDinnerId = IdConverter.convertId(mealPrepDTO.getSatDinner().getId());
-        if(mealPrepDTO.getSunDinner()!=null)
-        this.sunDinnerId = IdConverter.convertId(mealPrepDTO.getSunDinner().getId());
-        if(mealPrepDTO.getSatBreak()!=null)
-        this.satBreakId = IdConverter.convertId(mealPrepDTO.getSatBreak().getId());
-        if(mealPrepDTO.getSunBreak()!=null)
-        this.sunBreakId = IdConverter.convertId(mealPrepDTO.getSunBreak().getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName()) != null)
+            this.monDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName()) != null)
+            this.tuesDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName()) != null)
+            this.wedDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName()) != null)
+            this.thursDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName()) != null)
+            this.friDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName()) != null)
+            this.satDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName()).getId());
+        if (mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName()) != null)
+            this.sunDinnerId = IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName()).getId());
     }
 }

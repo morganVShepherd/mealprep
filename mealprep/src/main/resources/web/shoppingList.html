@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap-download.css">
+    <script src = "js/recipeScriptsPagebuilds.js"></script>
+    <script src = "js/recipeDataDownload.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <script>
+        window.onload = fetchIngredientData;
+    </script>
+
+    <div class="list-group">
+        <a href="home.html" class="btn btn-primary btn-lg btn-block active m-2" role="button" aria-pressed="true" >Home</a>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="data-table">
+                    <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Metric</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+                <div class="list-group">
+                     <button type="button" onclick="downloadTableAsCsv('data-table')" class="btn btn-primary btn-lg btn-block active m-2" >Download</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>

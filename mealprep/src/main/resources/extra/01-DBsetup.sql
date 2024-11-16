@@ -28,7 +28,6 @@ CREATE TABLE recipe (
 );
 
 INSERT INTO recipe VALUES (1,0,0,0,'Not selected','Other Plan','DINNER','CONSTANT');
-INSERT INTO recipe VALUES (2,0,0,0,'Not selected','Other Plan','BREAKFAST','CONSTANT');
 
 CREATE SEQUENCE recipe_seq
     AS SMALLINT
@@ -79,8 +78,6 @@ CREATE TABLE meal_prep (
                               FRI_DINNER_ID INT NOT NULL,
                               SAT_DINNER_ID INT NOT NULL,
                               SUN_DINNER_ID INT NOT NULL,
-                              SAT_BREAK_ID INT NOT NULL,
-                              SUN_BREAK_ID INT NOT NULL,
                               PRIMARY KEY (ID)
 );
 

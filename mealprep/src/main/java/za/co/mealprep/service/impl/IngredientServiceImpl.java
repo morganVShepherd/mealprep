@@ -27,6 +27,15 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public IngredientDTO create(IngredientDTO ingredientDTO) throws RestException {
         try {
+
+            List<FoodTypeDTO> foodTypeDTOS = foodTypeService.checkForExisting(ingredientDTO.getFoodTypeDTO().getName().toLowerCase());
+            if(foodTypeDTOS.isEmpty()){
+                ingredientDTO.setFoodTypeDTO(foodTypeService.create(ingredientDTO.getFoodTypeDTO()));
+            }
+            else{
+                ingredientDTO.setFoodTypeDTO(foodTypeDTOS.get(0));
+            }
+
             if (ingredientDTO.getRecipeId() == null) {
                 throw new RestException(ErrorConstants.NEEDS_PARENT);
             }
@@ -34,64 +43,6 @@ public class IngredientServiceImpl implements IngredientService {
             return new IngredientDTO(ingredient, ingredientDTO.getFoodTypeDTO());
         } catch (RestException re) {
             throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public IngredientDTO update(IngredientDTO ingredientDTO) throws RestException {
-        try {
-            if (ingredientDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            if (ingredientDTO.getRecipeId() == null) {
-                throw new RestException(ErrorConstants.NEEDS_PARENT);
-            }
-            Ingredient ingredient = ingredientRepository.save(new Ingredient(ingredientDTO));
-            return new IngredientDTO(ingredient, ingredientDTO.getFoodTypeDTO());
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void delete(IngredientDTO ingredientDTO) throws RestException {
-        try {
-            if (ingredientDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            ingredientRepository.deleteById(IdConverter.convertId(ingredientDTO.getId()));
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void deleteByRecipeId(String recipeId) throws RestException {
-        try {
-            if ( recipeId== null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            ingredientRepository.deleteAllByRecipeId(IdConverter.convertId(recipeId));
-        }
-        catch (RestException re){
-            throw re;
-        }
-        catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public List<IngredientDTO> getAll() throws RestException {
-        try {
-            List<Ingredient> ingredients = ingredientRepository.findAll();
-            return mapList(ingredients);
         } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }

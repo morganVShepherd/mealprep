@@ -21,53 +21,9 @@ public class FoodTypeServiceImpl implements FoodTypeService {
     public FoodTypeRepository foodTypeRepository;
 
     @Override
-    public FoodTypeDTO create(FoodTypeDTO foodTypeDTO) throws RestException {
-        try {
-            if (foodTypeRepository.findByName(foodTypeDTO.getName())!=null
-                    && foodTypeRepository.findByName(foodTypeDTO.getName()).size()>0) {
-                throw new RestException(ErrorConstants.ALREADY_EXISTS);
-            }
+    public FoodTypeDTO create(FoodTypeDTO foodTypeDTO){
             FoodType foodType = foodTypeRepository.save(new FoodType(foodTypeDTO));
             return new FoodTypeDTO(foodType);
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public FoodTypeDTO update(FoodTypeDTO foodTypeDTO) throws RestException {
-        try {
-            if (foodTypeDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            if (foodTypeRepository.findByName(foodTypeDTO.getName()).size() > 0) {
-                throw new RestException(ErrorConstants.DOES_EXIST);
-            }
-            FoodType foodType = foodTypeRepository.save(new FoodType(foodTypeDTO));
-            return new FoodTypeDTO(foodType);
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void delete(FoodTypeDTO foodTypeDTO) throws RestException {
-        try {
-            if (foodTypeDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            foodTypeRepository.deleteById(IdConverter.convertId(foodTypeDTO.getId()));
-        }
-        catch (RestException re) {
-            throw re;
-        }
-        catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
     }
 
     @Override
@@ -78,16 +34,6 @@ public class FoodTypeServiceImpl implements FoodTypeService {
             return mapList(foodTypes);
         } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public List<FoodTypeDTO> getAll() throws RestException {
-        try {
-            List<FoodType> foodTypes = foodTypeRepository.findAll();
-            return mapList(foodTypes);
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(),ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
 

@@ -51,58 +51,6 @@ public class RecipeServiceImpl implements RecipeService {
         } catch (RestException re) {
             throw re;
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public RecipeDTO update(RecipeDTO recipeDTO) throws RestException {
-        try {
-            if (recipeDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            recipeRepository.save(new Recipe(recipeDTO));
-            for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
-                if (ingredientDTO.getRecipeId() == null) {
-                    ingredientDTO.setRecipeId(recipeDTO.getId());
-                    ingredientDTO.setId(ingredientService.create(ingredientDTO).getId());
-                } else {
-                    ingredientService.update(ingredientDTO);
-                }
-            }
-
-            for (StepDTO stepDTO : recipeDTO.getSteps()) {
-                if (stepDTO.getRecipeId() == null) {
-                    stepDTO.setRecipeId(recipeDTO.getId());
-                    stepDTO.setId(stepService.create(stepDTO).getId());
-                } else {
-                    stepService.update(stepDTO);
-                }
-            }
-            for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
-                ingredientService.update(ingredientDTO);
-            }
-            return recipeDTO;
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
-
-    @Override
-    public void delete(RecipeDTO recipeDTO) throws RestException {
-        try {
-            if (recipeDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            ingredientService.deleteByRecipeId(recipeDTO.getId());
-            stepService.deleteByRecipeId(recipeDTO.getId());
-            recipeRepository.deleteById(IdConverter.convertId(recipeDTO.getId()));
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }

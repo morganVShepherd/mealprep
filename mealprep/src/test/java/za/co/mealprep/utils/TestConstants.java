@@ -7,18 +7,23 @@ import za.co.mealprep.dto.IngredientDTO;
 import za.co.mealprep.dto.MealPrepDTO;
 import za.co.mealprep.dto.RecipeDTO;
 import za.co.mealprep.dto.StepDTO;
+import za.co.mealprep.dto.WeekDataItem;
 import za.co.mealprep.pojo.Constants;
+import za.co.mealprep.pojo.DayOfWeekRef;
 import za.co.mealprep.pojo.IngredientType;
 import za.co.mealprep.pojo.MealRotation;
 import za.co.mealprep.pojo.MealType;
 import za.co.mealprep.pojo.Metric;
+import za.co.mealprep.pojo.ShoppingListItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TestConstants {
 
-    public static Long VALID_L_ID = Long.valueOf(22l);
+    public static Long VALID_L_ID = 22L;
     public static String VALID_S_ID = IdConverter.convertId(VALID_L_ID);
     public static String GENERIC_NAME = "semaj";
     public static String GENERIC_DETAILS = "My BLT drive on my computer just went AWOL, and I've got this big project due tomorrow";
@@ -33,18 +38,34 @@ public class TestConstants {
         return stringBuilder.toString();
     }
 
+    public static List<ShoppingListItem> generateShoppingList(int items) {
+        List<ShoppingListItem> shoppingListItems = new ArrayList<>();
+        for (int a =0; a< items; a++){
+            shoppingListItems.add(new ShoppingListItem("food",a, Metric.CUP.getLabel()));
+        }
+        return shoppingListItems;
+    }
+
+    public static List<WeekDataItem> generateWeekView(int items) {
+        List<WeekDataItem> weekDataItems = new ArrayList<>();
+        for (int a =0; a< items; a++){
+            weekDataItems.add(new WeekDataItem("day","Name",""+a));
+        }
+        return weekDataItems;
+    }
+
     public static MealPrepDTO generateMealPrepDTO() {
         MealPrepDTO mealPrepDTO = new MealPrepDTO();
         mealPrepDTO.setId(VALID_S_ID);
-        mealPrepDTO.setMonDinner(generateRecipeDTO());
-        mealPrepDTO.setTuesDinner(generateRecipeDTO());
-        mealPrepDTO.setWedDinner(generateRecipeDTO());
-        mealPrepDTO.setThursDinner(generateRecipeDTO());
-        mealPrepDTO.setFriDinner(generateRecipeDTO());
-        mealPrepDTO.setSatDinner(generateRecipeDTO());
-        mealPrepDTO.setSunDinner(generateRecipeDTO());
-        mealPrepDTO.setSatBreak(generateRecipeDTO());
-        mealPrepDTO.setSunBreak(generateRecipeDTO());
+        Map<String,RecipeDTO> recipeDTOMap = new HashMap<>();
+        recipeDTOMap.put(DayOfWeekRef.DAY1.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY2.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY3.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY4.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY5.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY6.getDayOfWeekName(),generateRecipeDTO());
+        recipeDTOMap.put(DayOfWeekRef.DAY7.getDayOfWeekName(),generateRecipeDTO());
+        mealPrepDTO.setWeeksRecipes(recipeDTOMap);
         return mealPrepDTO;
 
     }
@@ -75,39 +96,10 @@ public class TestConstants {
         ingredientDTO.setId(VALID_S_ID);
         ingredientDTO.setRecipeId(VALID_S_ID);
         ingredientDTO.setQuantity(GENERIC_QUANTITY);
-        ingredientDTO.setMetric(Metric.CUP);
+        ingredientDTO.setMetric(Metric.CUP.name());
         ingredientDTO.setFoodTypeDTO(generateFoodTypeDTO());
         ingredientDTO.setIngredientType(IngredientType.OTHER);
         return ingredientDTO;
-    }
-
-    public static RecipeDTO generateNoMealRecipeDto() {
-        RecipeDTO recipeDTO = generateRecipeDTO();
-        String recipeId = IdConverter.convertId(Constants.NO_RECIPE_DINNER_ID);
-
-        FoodTypeDTO emptyFoodType = generateFoodTypeDTO();
-        emptyFoodType.setId(IdConverter.convertId(Constants.NO_FOOD_TYPE_ID));
-        emptyFoodType.setName("Nothing");
-
-        List<StepDTO> stepDTOList = new ArrayList<>();
-        StepDTO emptySteps = generateStepDTO(0);
-        emptySteps.setId(IdConverter.convertId(Constants.NO_STEP_ID));
-        emptySteps.setRecipeId(recipeId);
-        emptySteps.setDetails("No Steps");
-        stepDTOList.add(emptySteps);
-        recipeDTO.setSteps(stepDTOList);
-
-        List<IngredientDTO> ingredientDTOList = new ArrayList<>();
-        IngredientDTO emptyIngredient = generateIngredientDTO();
-        emptyIngredient.setRecipeId(recipeId);
-        emptyIngredient.setId(IdConverter.convertId(Constants.NO_INGREDIENT_ID));
-        emptyIngredient.setQuantity(0l);
-        emptyIngredient.setMetric(Metric.BLANK);
-        emptyIngredient.setFoodTypeDTO(emptyFoodType);
-        ingredientDTOList.add(emptyIngredient);
-        recipeDTO.setIngredients(ingredientDTOList);
-
-        return recipeDTO;
     }
 
     public static FoodTypeDTO generateFoodTypeDTO() {

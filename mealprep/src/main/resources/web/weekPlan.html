@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Week Plan</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap-download.css">
+    <link rel="stylesheet" href="css/bootstrap-download.min.css">
+    <script src="js/recipeScriptsPagebuilds.js"></script>
+    <script src="js/jquery-3.5.1-download.slim.min.js"></script>
+    <script src="js/bootstrap-download.bundle.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+
+    <script>
+        window.onload = fetchWeekData;
+    </script>
+
+    <div class="list-group">
+        <a href="home.html" class="btn btn-primary btn-lg btn-block active m-2" role="button"
+           aria-pressed="true">Home</a>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0" id="week-data-table">
+                    <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Name</th>
+                        <th>View</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+                <div class="list-group">
+                    <button type="button" data-toggle="modal" data-target="#whatsAppModal" onclick="generateWhatsAppModal()" class="btn btn-primary btn-lg btn-block" >WhatsApp</button>
+                    <button type="button" data-toggle="modal" onclick="generateMealPrep()" class="btn btn-primary btn-lg btn-block" >Prepare Weekly Meals</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- recipe Modal -->
+    <div class="modal fade" id="recipeModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-fullscreen modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <h3 id = "modalHeader"> placeHolder </h3>
+                    </h5>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table align-items-center mb-0" id="modalTable">
+                        <tbody>
+                        <!-- Data will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+
+
+                    <h6 id="modal_body"></h6>
+                    <button type="button"
+                            class="btn btn-success btn-sm"
+                            data-toggle="modal"
+                            data-target="#recipeModal"
+                            id="done">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- whatsApp Modal -->
+    <div class="modal fade" id="whatsAppModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog  modal-m">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Whatsapp</h3>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <table class="table align-items-center mb-0" id="whatsAppData">
+                        <tbody>
+                        <!-- Data will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

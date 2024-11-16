@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import za.co.mealprep.dto.IngredientDTO;
 import za.co.mealprep.dto.MealPrepDTO;
 import za.co.mealprep.dto.RecipeDTO;
+import za.co.mealprep.dto.WeekDataItem;
 import za.co.mealprep.entities.MealPrep;
 import za.co.mealprep.exception.ErrorConstants;
 import za.co.mealprep.exception.RestException;
@@ -16,12 +17,11 @@ import za.co.mealprep.repository.MealPrepRepository;
 import za.co.mealprep.service.MealPrepService;
 import za.co.mealprep.service.RecipeService;
 import za.co.mealprep.utils.IdConverter;
-import za.co.mealprep.utils.PrettyPrint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @Service
 public class MealPrepServiceImpl implements MealPrepService {
@@ -42,98 +42,28 @@ public class MealPrepServiceImpl implements MealPrepService {
         }
     }
 
-    @Override
-    public MealPrepDTO updateWeeklyMealPrep(MealPrepDTO mealPrepDTO) throws RestException {
-        try {
-
-            if (mealPrepDTO.getId() == null) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-
-            Optional<MealPrep> optional = mealPrepRepository.findById(IdConverter.convertId(mealPrepDTO.getId()));
-            if (optional.isEmpty()) {
-                throw new RestException(ErrorConstants.DOES_NOT_EXIST);
-            }
-            MealPrep mealPrep = optional.get();
-            if (mealPrepDTO.getMonDinner() == null) {
-                mealPrep.setMonDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getMonDinner());
-            }
-            if (mealPrepDTO.getTuesDinner() == null) {
-                mealPrep.setTuesDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getTuesDinner());
-            }
-            if (mealPrepDTO.getWedDinner() == null) {
-                mealPrep.setWedDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getWedDinner());
-            }
-            if (mealPrepDTO.getThursDinner() == null) {
-                mealPrep.setThursDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getTuesDinner());
-            }
-            if (mealPrepDTO.getFriDinner() == null) {
-                mealPrep.setFriDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getFriDinner());
-            }
-            if (mealPrepDTO.getSatDinner() == null) {
-                mealPrep.setSatDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getSatDinner());
-            }
-            if (mealPrepDTO.getSunDinner() == null) {
-                mealPrep.setSunDinnerId(Constants.NO_RECIPE_DINNER_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getSatDinner());
-            }
-            if (mealPrepDTO.getSatBreak() == null) {
-                mealPrep.setSatBreakId(Constants.NO_RECIPE_BREAKFAST_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getSatBreak());
-            }
-            if (mealPrepDTO.getSunBreak() == null) {
-                mealPrep.setSunBreakId(Constants.NO_RECIPE_BREAKFAST_ID);
-            } else {
-                recipeService.update(mealPrepDTO.getSunBreak());
-            }
-            return mapFromEntity(mealPrepRepository.save(mealPrep));
-        } catch (RestException re) {
-            throw re;
-        } catch (Exception e) {
-            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
-        }
-    }
 
     @Override
-    public String generateShoppingList(String mealPrepId) throws RestException {
+    public List<ShoppingListItem> generateShoppingList() throws RestException {
         try {
 
-            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findById(IdConverter.convertId(mealPrepId)).get());
+            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findFirstByOrderByIdDesc().get());
 
             List<IngredientDTO> allIngredients = new ArrayList<>();
-            allIngredients.addAll(mealPrepDTO.getMonDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getTuesDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getWedDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getThursDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getFriDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getSatDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getSunDinner().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getSatBreak().getIngredients());
-            allIngredients.addAll(mealPrepDTO.getSunBreak().getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName()).getIngredients());
+            allIngredients.addAll(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName()).getIngredients());
 
-            HashMap<String, ShoppingListItem> shoppingListItemHashMap = new HashMap<String, ShoppingListItem>();
+            HashMap<String, ShoppingListItem> shoppingListItemHashMap = new HashMap<>();
 
             for (IngredientDTO currentIngredient : allIngredients) {
                 ShoppingListItem shoppingListItem = shoppingListItemHashMap.get(currentIngredient.getFoodTypeDTO().getId());
                 if (shoppingListItem != null) {
                     long qntyToAdd = currentIngredient.getQuantity();
-                    if (shoppingListItem.getMetric() != currentIngredient.getMetric()) {
-                        //todo convert metric to same
-                    }
                     shoppingListItem.setQuantity(shoppingListItem.getQuantity() + qntyToAdd);
                 } else {
                     shoppingListItem = new ShoppingListItem(currentIngredient.getFoodTypeDTO().getName(), currentIngredient.getQuantity(), currentIngredient.getMetric());
@@ -141,52 +71,41 @@ public class MealPrepServiceImpl implements MealPrepService {
                 shoppingListItemHashMap.put(currentIngredient.getFoodTypeDTO().getId(), shoppingListItem);
             }
             shoppingListItemHashMap.remove(IdConverter.convertId(Constants.NO_FOOD_TYPE_ID));
-            return PrettyPrint.generateStringShoppingList(shoppingListItemHashMap);
+
+            List<ShoppingListItem> shoppingListItems = new ArrayList<>(shoppingListItemHashMap.values());
+
+            return shoppingListItems;
         } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
         }
     }
 
     @Override
-    public String generateWhatsAppList(String mealPrepId) throws RestException {
+    public String generateWhatsAppList() throws RestException {
         try {
-            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findById(IdConverter.convertId(mealPrepId)).get());
+            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findFirstByOrderByIdDesc().get());
             StringBuilder whatsappList = new StringBuilder("Meal prep for the week \n");
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getMonDinner().getId()),
-                    mealPrepDTO.getMonDinner().getName(), MealType.DINNER, "Monday"));
-            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
-                    MealType.BREAKFAST, "Monday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName()).getName(), DayOfWeekRef.DAY1.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getTuesDinner().getId()),
-                    mealPrepDTO.getTuesDinner().getName(), MealType.DINNER, "Tuesday"));
-            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
-                    MealType.BREAKFAST, "Tuesday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName()).getName(), DayOfWeekRef.DAY2.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWedDinner().getId()),
-                    mealPrepDTO.getWedDinner().getName(), MealType.DINNER, "Wednesday"));
-            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
-                    MealType.BREAKFAST, "Wednesday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName()).getName(), DayOfWeekRef.DAY3.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getThursDinner().getId()),
-                    mealPrepDTO.getThursDinner().getName(), MealType.DINNER, "Thursday"));
-            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
-                    MealType.BREAKFAST, "Thursday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName()).getName(), DayOfWeekRef.DAY4.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getFriDinner().getId()),
-                    mealPrepDTO.getFriDinner().getName(), MealType.DINNER, "Monday"));
-            whatsappList.append(generateListItem(Constants.DEFAULT_BREAKFAST_ID, null,
-                    MealType.BREAKFAST, "Friday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName()).getName(), DayOfWeekRef.DAY5.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSatDinner().getId()),
-                    mealPrepDTO.getSatDinner().getName(), MealType.DINNER, "Saturday"));
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSatBreak().getId()),
-                    mealPrepDTO.getSatBreak().getName(), MealType.BREAKFAST, "Saturday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName()).getName(), DayOfWeekRef.DAY6.getDayOfWeekName()));
 
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSunDinner().getId()),
-                    mealPrepDTO.getSunDinner().getName(), MealType.DINNER, "Sunday"));
-            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getSunBreak().getId()),
-                    mealPrepDTO.getSunBreak().getName(), MealType.BREAKFAST, "Sunday"));
+            whatsappList.append(generateListItem(IdConverter.convertId(mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName()).getId()),
+                    mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName()).getName(), DayOfWeekRef.DAY7.getDayOfWeekName()));
 
             return whatsappList.toString();
 
@@ -197,22 +116,48 @@ public class MealPrepServiceImpl implements MealPrepService {
         }
     }
 
-    private String generateListItem(Long recipeId, String desc, MealType mealType, String day) {
+    @Override
+    public List<WeekDataItem> generateWeekView() throws RestException {
+        try {
+            MealPrepDTO mealPrepDTO = mapFromEntity(mealPrepRepository.findFirstByOrderByIdDesc().get());
+            List<WeekDataItem> weekDataItems = new ArrayList<>();
+            RecipeDTO recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY1.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY1.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY2.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY2.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY3.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY3.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY4.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY4.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY5.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY5.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY6.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY6.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            recipeDTOForProcessing = mealPrepDTO.getWeeksRecipes().get(DayOfWeekRef.DAY7.getDayOfWeekName());
+            weekDataItems.add(new WeekDataItem(DayOfWeekRef.DAY7.getDayOfWeekName(), recipeDTOForProcessing.getName(), recipeDTOForProcessing.getId()));
+
+            return weekDataItems;
+
+        } catch (RestException re) {
+            throw re;
+        } catch (Exception e) {
+            throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);
+        }
+    }
+
+    private String generateListItem(Long recipeId, String desc, String day) {
         String messageLineItem = "";
-        if (mealType == MealType.DINNER) {
-            if (recipeId == Constants.NO_RECIPE_DINNER_ID) {
-                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), "Out");
-            } else {
-                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), desc);
-            }
+
+        if (Objects.equals(recipeId, Constants.NO_RECIPE_DINNER_ID)) {
+            messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), "Out");
         } else {
-            if (recipeId == Constants.NO_RECIPE_BREAKFAST_ID) {
-                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), "Out");
-            } else if (recipeId == Constants.DEFAULT_BREAKFAST_ID) {
-                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), Constants.DEFAULT_BREAKFAST_NAME);
-            } else {
-                messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.BREAKFAST.getLabel(), desc);
-            }
+            messageLineItem = String.format(Constants.LIST_TEMPLATE, day, MealType.DINNER.getLabel(), desc);
         }
         return messageLineItem;
     }
@@ -220,17 +165,14 @@ public class MealPrepServiceImpl implements MealPrepService {
     private MealPrepDTO populateAndSaveWeeksMeals() throws RestException {
         MealPrepDTO mealPrepDTO = new MealPrepDTO();
         List<RecipeDTO> recipes = recipeService.getRandomMealsForPrep(Constants.GENERAL_MEAL_PREP_DINNER_TOTAL, MealType.DINNER);
-        mealPrepDTO.setMonDinner(recipes.get(DayOfWeekRef.DAY1.getValue()));
-        mealPrepDTO.setTuesDinner(recipes.get(DayOfWeekRef.DAY2.getValue()));
-        mealPrepDTO.setWedDinner(recipes.get(DayOfWeekRef.DAY3.getValue()));
-        mealPrepDTO.setThursDinner(recipes.get(DayOfWeekRef.DAY4.getValue()));
-        mealPrepDTO.setFriDinner(recipes.get(DayOfWeekRef.DAY5.getValue()));
-        mealPrepDTO.setSatDinner(recipes.get(DayOfWeekRef.DAY6.getValue()));
-        mealPrepDTO.setSunDinner(recipes.get(DayOfWeekRef.DAY7.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY1.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY1.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY2.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY2.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY3.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY3.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY4.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY4.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY5.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY5.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY6.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY6.getValue()));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY7.getDayOfWeekName(), recipes.get(DayOfWeekRef.DAY7.getValue()));
 
-        recipes = recipeService.getRandomMealsForPrep(Constants.GENERAL_MEAL_PREP_BREAKFAST_TOTAL, MealType.BREAKFAST);
-        mealPrepDTO.setSatBreak(recipes.get(DayOfWeekRef.DAY1.getValue()));
-        mealPrepDTO.setSunBreak(recipes.get(DayOfWeekRef.DAY2.getValue()));
 
         MealPrep mealPrep = new MealPrep(mealPrepDTO);
 
@@ -241,15 +183,13 @@ public class MealPrepServiceImpl implements MealPrepService {
 
     private MealPrepDTO mapFromEntity(MealPrep mealPrep) throws RestException {
         MealPrepDTO mealPrepDTO = new MealPrepDTO();
-        mealPrepDTO.setMonDinner(recipeService.getById(IdConverter.convertId(mealPrep.getMonDinnerId())));
-        mealPrepDTO.setTuesDinner(recipeService.getById(IdConverter.convertId(mealPrep.getTuesDinnerId())));
-        mealPrepDTO.setWedDinner(recipeService.getById(IdConverter.convertId(mealPrep.getWedDinnerId())));
-        mealPrepDTO.setThursDinner(recipeService.getById(IdConverter.convertId(mealPrep.getThursDinnerId())));
-        mealPrepDTO.setFriDinner(recipeService.getById(IdConverter.convertId(mealPrep.getFriDinnerId())));
-        mealPrepDTO.setSatDinner(recipeService.getById(IdConverter.convertId(mealPrep.getSatDinnerId())));
-        mealPrepDTO.setSunDinner(recipeService.getById(IdConverter.convertId(mealPrep.getSunDinnerId())));
-        mealPrepDTO.setSatBreak(recipeService.getById(IdConverter.convertId(mealPrep.getSatBreakId())));
-        mealPrepDTO.setSunBreak(recipeService.getById(IdConverter.convertId(mealPrep.getSunBreakId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY1.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getMonDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY2.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getTuesDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY3.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getWedDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY4.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getThursDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY5.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getFriDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY6.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getSatDinnerId())));
+        mealPrepDTO.getWeeksRecipes().put(DayOfWeekRef.DAY7.getDayOfWeekName(), recipeService.getById(IdConverter.convertId(mealPrep.getSunDinnerId())));
         return mealPrepDTO;
     }
 }

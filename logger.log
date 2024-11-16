@@ -1,28 +1,287 @@
-2024-05-27 17:16:54,107 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 23824 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
-2024-05-27 17:16:54,113 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
-2024-05-27 17:16:54,817 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-05-27 17:16:54,875 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 51 ms. Found 5 JPA repository interfaces.
-2024-05-27 17:16:55,393 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
-2024-05-27 17:16:55,403 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
-2024-05-27 17:16:55,403 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
-2024-05-27 17:16:55,458 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
-2024-05-27 17:16:55,458 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1310 ms
-2024-05-27 17:16:55,664 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2024-05-27 17:16:55,794 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4baf997
-2024-05-27 17:16:55,795 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2024-05-27 17:16:55,827 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-05-27 17:16:55,876 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
-2024-05-27 17:16:55,906 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
-2024-05-27 17:16:56,111 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-05-27 17:16:57,089 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-05-27 17:16:57,092 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-05-27 17:16:57,434 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-05-27 17:16:57,969 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
-2024-05-27 17:16:58,035 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
-2024-05-27 17:16:58,047 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 4.257 seconds (process running for 4.693)
-2024-05-27 17:16:58,214 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(2)-192.168.0.39] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-05-27 17:16:58,214 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.39] Initializing Servlet 'dispatcherServlet'
-2024-05-27 17:16:58,216 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.39] Completed initialization in 2 ms
-2024-05-27 18:25:50,200 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-05-27 18:25:50,204 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2024-05-27 18:25:50,206 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 13:28:28,857 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 7148 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 13:28:28,861 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 13:28:29,854 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 13:28:29,917 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 5 JPA repository interfaces.
+2024-11-16 13:28:30,527 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 13:28:30,537 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 13:28:30,537 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 13:28:30,597 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 13:28:30,597 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1693 ms
+2024-11-16 13:28:30,828 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 13:28:31,000 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@305552d6
+2024-11-16 13:28:31,002 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 13:28:31,044 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 13:28:31,121 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 13:28:31,165 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 13:28:31,443 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 13:28:32,590 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 13:28:32,593 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:28:32,890 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 13:28:33,272 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 13:28:33,850 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 13:28:33,922 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 13:28:33,934 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.493 seconds (process running for 6.648)
+2024-11-16 13:28:34,475 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(3)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 13:28:34,475 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 13:28:34,476 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 13:28:40,709 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-1] Something strange happened
+2024-11-16 13:28:42,144 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-5] Something strange happened
+2024-11-16 13:29:29,862 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-4] Something strange happened
+2024-11-16 13:29:29,926 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-3] Something strange happened
+2024-11-16 13:35:01,067 INFO org.hibernate.orm.jdbc.batch [http-nio-8080-exec-7] HHH100503: On release of batch it still contained JDBC statements
+2024-11-16 13:35:01,067 ERROR org.hibernate.orm.jdbc.batch [http-nio-8080-exec-7] HHH100501: Exception executing batch [java.sql.BatchUpdateException: Batch entry 0 insert into food_type (name,id) values (('egg'),('34'::int8)) was aborted: ERROR: duplicate key value violates unique constraint "food_type_pkey"
+  Detail: Key (id)=(34) already exists.  Call getNextException to see other errors in the batch.], SQL: insert into food_type (name,id) values (?,?)
+2024-11-16 13:35:01,068 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] SQL Error: 0, SQLState: 23505
+2024-11-16 13:35:01,068 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] Batch entry 0 insert into food_type (name,id) values (('egg'),('34'::int8)) was aborted: ERROR: duplicate key value violates unique constraint "food_type_pkey"
+  Detail: Key (id)=(34) already exists.  Call getNextException to see other errors in the batch.
+2024-11-16 13:35:01,068 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] ERROR: duplicate key value violates unique constraint "food_type_pkey"
+  Detail: Key (id)=(34) already exists.
+2024-11-16 13:35:01,073 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-7] Something strange happened
+2024-11-16 13:46:25,320 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:46:25,322 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 13:46:25,324 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 13:49:28,396 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 23700 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 13:49:28,399 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 13:49:29,122 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 13:49:29,178 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 50 ms. Found 5 JPA repository interfaces.
+2024-11-16 13:49:29,684 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 13:49:29,693 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 13:49:29,693 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 13:49:29,750 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 13:49:29,750 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1314 ms
+2024-11-16 13:49:29,952 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 13:49:30,085 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@20a1b3ae
+2024-11-16 13:49:30,087 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 13:49:30,117 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 13:49:30,168 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 13:49:30,199 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 13:49:30,413 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 13:49:31,417 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 13:49:31,419 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:49:31,670 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 13:49:32,010 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 13:49:32,534 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 13:49:32,597 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 13:49:32,610 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 4.571 seconds (process running for 5.003)
+2024-11-16 13:49:32,851 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(1)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 13:49:32,851 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(1)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 13:49:32,852 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(1)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 13:56:48,103 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:56:48,105 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 13:56:48,107 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 13:59:34,376 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 25280 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 13:59:34,378 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 13:59:35,081 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 13:59:35,135 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 48 ms. Found 5 JPA repository interfaces.
+2024-11-16 13:59:35,632 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 13:59:35,640 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 13:59:35,640 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 13:59:35,689 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 13:59:35,689 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1278 ms
+2024-11-16 13:59:35,907 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 13:59:36,043 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4baf997
+2024-11-16 13:59:36,045 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 13:59:36,078 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 13:59:36,130 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 13:59:36,160 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 13:59:36,363 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 13:59:37,385 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 13:59:37,387 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:59:37,644 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 13:59:37,978 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 13:59:38,497 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 13:59:38,559 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 13:59:38,572 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 4.536 seconds (process running for 4.97)
+2024-11-16 13:59:38,872 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(3)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 13:59:38,872 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 13:59:38,873 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 14:02:01,354 INFO org.hibernate.orm.jdbc.batch [http-nio-8080-exec-4] HHH100503: On release of batch it still contained JDBC statements
+2024-11-16 14:02:01,355 ERROR org.hibernate.orm.jdbc.batch [http-nio-8080-exec-4] HHH100501: Exception executing batch [java.sql.BatchUpdateException: Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('40'::int8),('OTHER'),(NULL),('1'::int8),('13'::int8),('61'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (61, 1, null, OTHER, 40, 13).  Call getNextException to see other errors in the batch.], SQL: insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (?,?,?,?,?,?)
+2024-11-16 14:02:01,355 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] SQL Error: 0, SQLState: 23502
+2024-11-16 14:02:01,355 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('40'::int8),('OTHER'),(NULL),('1'::int8),('13'::int8),('61'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (61, 1, null, OTHER, 40, 13).  Call getNextException to see other errors in the batch.
+2024-11-16 14:02:01,355 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-4] ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (61, 1, null, OTHER, 40, 13).
+2024-11-16 14:02:01,363 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-4] Something strange happened
+2024-11-16 14:03:09,074 INFO org.hibernate.orm.jdbc.batch [http-nio-8080-exec-8] HHH100503: On release of batch it still contained JDBC statements
+2024-11-16 14:03:09,074 ERROR org.hibernate.orm.jdbc.batch [http-nio-8080-exec-8] HHH100501: Exception executing batch [java.sql.BatchUpdateException: Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('41'::int8),('OTHER'),(NULL),('1'::int8),('14'::int8),('62'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (62, 1, null, OTHER, 41, 14).  Call getNextException to see other errors in the batch.], SQL: insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (?,?,?,?,?,?)
+2024-11-16 14:03:09,074 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] SQL Error: 0, SQLState: 23502
+2024-11-16 14:03:09,074 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('41'::int8),('OTHER'),(NULL),('1'::int8),('14'::int8),('62'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (62, 1, null, OTHER, 41, 14).  Call getNextException to see other errors in the batch.
+2024-11-16 14:03:09,074 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-8] ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (62, 1, null, OTHER, 41, 14).
+2024-11-16 14:03:09,075 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-8] Something strange happened
+2024-11-16 14:03:39,566 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:03:39,568 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:03:39,569 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 14:03:43,420 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 23288 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 14:03:43,422 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 14:03:44,231 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 14:03:44,293 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 5 JPA repository interfaces.
+2024-11-16 14:03:44,868 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 14:03:44,877 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 14:03:44,877 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 14:03:44,937 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 14:03:44,937 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1478 ms
+2024-11-16 14:03:45,163 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 14:03:45,311 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6e2eead5
+2024-11-16 14:03:45,313 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 14:03:45,348 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 14:03:45,406 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 14:03:45,443 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 14:03:45,688 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 14:03:46,773 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 14:03:46,776 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:03:47,062 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 14:03:47,421 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 14:03:48,002 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 14:03:48,074 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 14:03:48,088 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.049 seconds (process running for 5.626)
+2024-11-16 14:03:48,697 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(2)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 14:03:48,697 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 14:03:48,699 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 14:07:43,129 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=57s672ms785µs800ns).
+2024-11-16 14:08:13,141 INFO org.hibernate.orm.jdbc.batch [http-nio-8080-exec-3] HHH100503: On release of batch it still contained JDBC statements
+2024-11-16 14:08:13,142 ERROR org.hibernate.orm.jdbc.batch [http-nio-8080-exec-3] HHH100501: Exception executing batch [java.sql.BatchUpdateException: Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('42'::int8),('OTHER'),(NULL),('1'::int8),('15'::int8),('63'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (63, 1, null, OTHER, 42, 15).  Call getNextException to see other errors in the batch.], SQL: insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (?,?,?,?,?,?)
+2024-11-16 14:08:13,143 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] SQL Error: 0, SQLState: 23502
+2024-11-16 14:08:13,143 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('42'::int8),('OTHER'),(NULL),('1'::int8),('15'::int8),('63'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (63, 1, null, OTHER, 42, 15).  Call getNextException to see other errors in the batch.
+2024-11-16 14:08:13,144 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-3] ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (63, 1, null, OTHER, 42, 15).
+2024-11-16 14:09:32,479 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s348ms158µs700ns).
+2024-11-16 14:09:32,484 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-3] Something strange happened
+2024-11-16 14:10:18,158 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s678ms382µs500ns).
+2024-11-16 14:11:09,604 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s446ms458µs600ns).
+2024-11-16 14:11:09,614 INFO org.hibernate.orm.jdbc.batch [http-nio-8080-exec-7] HHH100503: On release of batch it still contained JDBC statements
+2024-11-16 14:11:09,614 ERROR org.hibernate.orm.jdbc.batch [http-nio-8080-exec-7] HHH100501: Exception executing batch [java.sql.BatchUpdateException: Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('43'::int8),('OTHER'),(NULL),('1'::int8),('16'::int8),('64'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (64, 1, null, OTHER, 43, 16).  Call getNextException to see other errors in the batch.], SQL: insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (?,?,?,?,?,?)
+2024-11-16 14:11:09,614 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] SQL Error: 0, SQLState: 23502
+2024-11-16 14:11:09,614 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] Batch entry 0 insert into ingredient (food_type_id,ingredient_type,metric,quantity,recipe_id,id) values (('43'::int8),('OTHER'),(NULL),('1'::int8),('16'::int8),('64'::int8)) was aborted: ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (64, 1, null, OTHER, 43, 16).  Call getNextException to see other errors in the batch.
+2024-11-16 14:11:09,614 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-7] ERROR: null value in column "metric" of relation "ingredient" violates not-null constraint
+  Detail: Failing row contains (64, 1, null, OTHER, 43, 16).
+2024-11-16 14:11:09,615 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-7] Something strange happened
+2024-11-16 14:11:09,677 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-9] Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: ServletOutputStream failed to write: java.nio.channels.ClosedChannelException]
+2024-11-16 14:11:09,681 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:11:09,682 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:11:09,684 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 14:11:23,744 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 2596 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 14:11:23,746 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 14:11:24,518 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 14:11:24,580 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 56 ms. Found 5 JPA repository interfaces.
+2024-11-16 14:11:25,141 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 14:11:25,150 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 14:11:25,151 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 14:11:25,205 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 14:11:25,205 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1422 ms
+2024-11-16 14:11:25,428 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 14:11:25,708 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6fd1ea75
+2024-11-16 14:11:25,709 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 14:11:25,743 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 14:11:25,797 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 14:11:25,830 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 14:11:26,079 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 14:11:27,187 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 14:11:27,190 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:11:27,473 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 14:11:27,831 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 14:11:28,388 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 14:11:28,458 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 14:11:28,470 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.108 seconds (process running for 5.654)
+2024-11-16 14:11:29,103 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(3)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 14:11:29,103 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 14:11:29,105 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(3)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 14:13:41,806 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:13:41,808 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:13:41,809 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 14:13:44,932 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 16148 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 14:13:44,934 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 14:13:45,749 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 14:13:45,812 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 5 JPA repository interfaces.
+2024-11-16 14:13:46,382 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 14:13:46,392 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 14:13:46,392 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 14:13:46,453 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 14:13:46,454 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1478 ms
+2024-11-16 14:13:46,681 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 14:13:46,826 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@bb6f3f7
+2024-11-16 14:13:46,828 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 14:13:46,863 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 14:13:46,920 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 14:13:46,958 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 14:13:47,186 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 14:13:48,271 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 14:13:48,273 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:13:48,556 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 14:13:48,912 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 14:13:49,484 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 14:13:49,554 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 14:13:49,566 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.034 seconds (process running for 5.573)
+2024-11-16 14:13:49,797 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(1)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 14:13:49,797 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(1)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 14:13:49,798 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(1)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 14:17:53,115 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:17:53,117 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:17:53,119 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 14:22:53,148 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 6148 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 14:22:53,150 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 14:22:53,898 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 14:22:53,960 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 54 ms. Found 5 JPA repository interfaces.
+2024-11-16 14:22:54,483 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 14:22:54,492 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 14:22:54,492 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 14:22:54,545 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 14:22:54,545 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1358 ms
+2024-11-16 14:22:54,755 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 14:22:54,895 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@68fc9167
+2024-11-16 14:22:54,896 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 14:22:54,929 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 14:22:54,982 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 14:22:55,014 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 14:22:55,268 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 14:22:56,441 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 14:22:56,444 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:22:56,729 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 14:22:57,112 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 14:22:57,721 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 14:22:57,797 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 14:22:57,810 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.017 seconds (process running for 5.455)
+2024-11-16 14:22:58,165 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(2)-192.168.0.38] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 14:22:58,166 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.38] Initializing Servlet 'dispatcherServlet'
+2024-11-16 14:22:58,167 INFO org.springframework.web.servlet.DispatcherServlet [RMI TCP Connection(2)-192.168.0.38] Completed initialization in 1 ms
+2024-11-16 14:24:07,460 ERROR za.co.mealprep.exception.RestException [http-nio-8080-exec-8] Something strange happened
+2024-11-16 14:24:22,008 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:24:22,010 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:24:22,012 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2024-11-16 14:25:34,140 INFO za.co.mealprep.MealprepApplication [main] Starting MealprepApplication using Java 17.0.5 with PID 8464 (C:\Software\Projects\mealprep\mealprep\target\classes started by Travm in C:\Software\Projects\mealprep)
+2024-11-16 14:25:34,142 INFO za.co.mealprep.MealprepApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-11-16 14:25:34,920 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 14:25:34,983 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 56 ms. Found 5 JPA repository interfaces.
+2024-11-16 14:25:35,572 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2024-11-16 14:25:35,582 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2024-11-16 14:25:35,582 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-11-16 14:25:35,643 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2024-11-16 14:25:35,644 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1462 ms
+2024-11-16 14:25:35,874 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2024-11-16 14:25:36,027 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18026052
+2024-11-16 14:25:36,028 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-11-16 14:25:36,066 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 14:25:36,125 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-11-16 14:25:36,163 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-11-16 14:25:36,402 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 14:25:37,528 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 14:25:37,532 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:25:37,824 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-16 14:25:38,191 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 14:25:38,763 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-11-16 14:25:38,832 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path ''
+2024-11-16 14:25:38,844 INFO za.co.mealprep.MealprepApplication [main] Started MealprepApplication in 5.103 seconds (process running for 5.7)
+2024-11-16 14:25:39,039 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-16 14:25:39,039 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-11-16 14:25:39,040 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2024-11-16 14:30:07,722 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 14:30:07,725 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-11-16 14:30:07,726 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

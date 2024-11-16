@@ -10,7 +10,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import za.co.mealprep.dto.RecipeDTO;
-import za.co.mealprep.exception.ErrorConstants;
 import za.co.mealprep.pojo.MealRotation;
 import za.co.mealprep.pojo.MealType;
 import za.co.mealprep.service.RecipeService;
@@ -20,7 +19,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -84,7 +82,7 @@ public class RecipeControllerTest {
         RecipeDTO reqObj = TestConstants.generateRecipeDTO();
         String jsonString = TestConstants.asJsonString(reqObj);
         when(recipeService.create(any())).thenReturn(TestConstants.generateRecipeDTO());
-        mvc.perform(post("/recipe/create")
+        mvc.perform(post("/recipe/createJavaScript")
                         .headers(TestConstants.defaultHeaders())
                         .content(jsonString)
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -102,28 +100,6 @@ public class RecipeControllerTest {
                 .andExpect(jsonPath("$.ingredients").isNotEmpty())
                 .andExpect(jsonPath("$.steps").exists())
                 .andExpect(jsonPath("$.steps").isNotEmpty())
-                .andReturn();
-    }
-
-    @Test
-    public void createMissingFields_fail() throws Exception {
-        RecipeDTO reqObj = TestConstants.generateRecipeDTO();
-        reqObj.setName(null);
-        reqObj.setNotes(null);
-        reqObj.setMealType(null);
-        reqObj.setMealRotation(null);
-        String jsonString = TestConstants.asJsonString(reqObj);
-        when(recipeService.create(any())).thenReturn(TestConstants.generateRecipeDTO());
-        mvc.perform(post("/recipe/create")
-                        .headers(TestConstants.defaultHeaders())
-                        .content(jsonString)
-                        .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.name").value(ErrorConstants.CANNOT_BE_EMPTY))
-                .andExpect(jsonPath("$.notes").value(ErrorConstants.CANNOT_BE_EMPTY))
-                .andExpect(jsonPath("$.mealType").value(ErrorConstants.CANNOT_BE_EMPTY))
-                .andExpect(jsonPath("$.mealRotation").value(ErrorConstants.CANNOT_BE_EMPTY))
                 .andReturn();
     }
 }
