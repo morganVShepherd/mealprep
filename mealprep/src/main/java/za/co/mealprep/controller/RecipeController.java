@@ -51,7 +51,7 @@ public class RecipeController extends RootController {
 
     /**
      * TODO
-     * for some reason I cannot seem to have the mapped Java script Json object searlizied into my DTO,
+     * for some reason I cannot seem to have the mapped Java script Json object into my DTO,
      * so decided to leverage Jackson mapper for now
      *
      * @param recipeDTO

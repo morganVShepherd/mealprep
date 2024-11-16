@@ -41,7 +41,7 @@ public class Ingredient {
         this.id = IdConverter.convertId(ingredient.getId());
         this.recipeId = IdConverter.convertId(ingredient.getRecipeId());
         this.quantity = ingredient.getQuantity();
-        this.metric= ingredient.getMetric();
+        this.metric= Metric.valueOf(ingredient.getMetric());
         this.foodTypeId = IdConverter.convertId(ingredient.getFoodTypeDTO().getId());
         this.ingredientType = ingredient.getIngredientType();
     }

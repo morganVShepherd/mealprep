@@ -8,6 +8,6 @@ import lombok.Data;
 public class ShoppingListItem {
     private String foodName;
     private long quantity;
-    private Metric metric;
+    private String metric;
 
 }

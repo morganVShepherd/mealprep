@@ -19,9 +19,13 @@ import za.co.mealprep.service.RecipeService;
 import za.co.mealprep.utils.IdConverter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @Service
 public class MealPrepServiceImpl implements MealPrepService {
@@ -73,7 +77,7 @@ public class MealPrepServiceImpl implements MealPrepService {
             shoppingListItemHashMap.remove(IdConverter.convertId(Constants.NO_FOOD_TYPE_ID));
 
             List<ShoppingListItem> shoppingListItems = new ArrayList<>(shoppingListItemHashMap.values());
-
+            shoppingListItems.sort(Comparator.comparing(ShoppingListItem::getFoodName));
             return shoppingListItems;
         } catch (Exception e) {
             throw new RestException(e.getMessage(), ErrorConstants.UNEXPECTED_EXCEPTION);

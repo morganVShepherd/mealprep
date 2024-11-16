@@ -34,7 +34,7 @@ INSERT INTO food_type(id, name) VALUES
     (30,'Mayo'),
     (31,'Slice of Bread'),
     (32,'Onion'),
-    (33,'Tomato and Chilli Pasta Sauce'),;
+    (33,'Tomato and Chilli Pasta Sauce'),
     (34,'Baked Beans');
 
 SELECT setval('food_type_seq', 35, true);

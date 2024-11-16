@@ -22,7 +22,7 @@ public class IngredientDTO {
     @Positive(message = "positive")
     private long quantity;
     @NotNull(message = "notNull")
-    private Metric metric;
+    private String metric;
     @Valid
     private FoodTypeDTO foodTypeDTO;
     @NotNull(message = "notNull")
@@ -32,7 +32,7 @@ public class IngredientDTO {
         this.id = IdConverter.convertId(ingredient.getId());
         this.recipeId = IdConverter.convertId(ingredient.getRecipeId());
         this.quantity = ingredient.getQuantity();
-        this.metric = ingredient.getMetric();
+        this.metric = ingredient.getMetric().getLabel();
         this.foodTypeDTO = foodTypeDTO;
         this.ingredientType = ingredient.getIngredientType();
     }
